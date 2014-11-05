@@ -1,0 +1,31 @@
+4
+
+Stops: 1, 2, 3, 4
+Lines: 1, 2, 3, 4
+1 route: 1, 2
+2 route: 2, 3
+3 route: 3, 1
+4 route: 2, 4
+Johny lives at 1
+Michelle lives at 4
+
+Stops: OxfordCircus, PiccadillyCircus, HydeParkCorner, King'sCross, GreenPark, Arsenal, Victoria, Highbury&Islington, LeicesterSquare
+Lines: Blue, Cyan
+Cyan route: Highbury&Islington, King'sCross, OxfordCircus, GreenPark, Victoria
+Blue route: HydeParkCorner, GreenPark, PiccadillyCircus, LeicesterSquare, King'sCross, Arsenal
+Johny lives at King'sCross
+Michelle lives at GreenPark
+
+Stops: OxfordCircus, PiccadillyCircus, HydeParkCorner, King'sCross, GreenPark, Arsenal, Victoria, Highbury&Islington, LeicesterSquare
+Lines: Blue, Cyan
+Cyan route: Highbury&Islington, King'sCross, OxfordCircus, GreenPark, Victoria
+Blue route: HydeParkCorner, GreenPark, PiccadillyCircus, LeicesterSquare, King'sCross, Arsenal
+Johny lives at PiccadillyCircus
+Michelle lives at LeicesterSquare
+
+Stops: OxfordCircus, PiccadillyCircus, HydeParkCorner, King'sCross, GreenPark, Arsenal, Victoria, Highbury&Islington, LeicesterSquare
+Lines: Blue, Cyan
+Cyan route: Highbury&Islington, King'sCross, OxfordCircus, GreenPark, Victoria
+Blue route: HydeParkCorner, GreenPark, PiccadillyCircus, LeicesterSquare, King'sCross, Arsenal
+Johny lives at Victoria
+Michelle lives at HydeParkCorner

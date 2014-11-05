@@ -1,0 +1,69 @@
+2 10
+1 2 Gops
+1 1 Gops
+1 1 Gops
+1 1 Gops
+1 1 Gops
+1 2 Girl
+1 2 Girl
+1 2 Girl
+1 2 Girl
+2 1 2 Gops
+1 2 Girl
+
+1 2 Girl
+
+1 1 Gops
+1 1 Gops
+1 1 Gops
+1 1 Gops
+1 1 Gops
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Gops
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Girl
+1 1 Gops
+1 1 Gops
+1 1 Gops
+1 1 Gops
+
+1 1 Girl
+1 1 Girl
+3 4
+1 1 Girl
+1 2 Gops
+2 2 3 Girl
+3 1 2 3 Gops
+2 2
+2 1 2 Girl
+2 1 2 Gops
+
+5
+5
+1 1 Gops
+2 1 2 Gops
+3 1 2 3 Girl
+4 1 2 3 4 Gops
+5 1 2 3 4 5 Girl
+1 1 Girl
+1 2 Girl
+2 3 4 Girl
+1 4 Gops

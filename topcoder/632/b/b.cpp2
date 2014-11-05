@@ -1,0 +1,128 @@
+#include <functional>
+#include <algorithm>
+#include <iostream>
+#include <numeric>
+#include <cassert>
+#include <cstdlib>
+#include <string>
+#include <cstdio>
+#include <vector>
+#include <ctime>
+#include <queue>
+#include <set>
+#include <map>
+using namespace std;
+#define forn(i, n) for (int i = 0; i < (int)(n); ++i)
+#define fore(i, b, e) for (int i = (int)(b); i <= (int)(e); ++i)
+#define ford(i, n) for (int i = (int)(n) - 1; i >= 0; --i)
+#define mp make_pair
+#define pb push_back
+#define fi first
+#define se second
+#define all(x) (x).begin(), (x).end()
+typedef vector<int> vi;
+typedef pair<int, int> pii;
+typedef long long i64;
+typedef unsigned long long u64;
+const int inf = 1e9+100500;
+const int maxn = 4020;
+const int mod = 1000000007;
+int add(int x, int y) { return (x+y)%mod; }
+int sub(int x, int y) { return (x+mod-y)%mod; }
+
+int p3[maxn];
+void buildp3() {
+    p3[0] = 1;
+    fore(i, 1, 2000) p3[i] = (i64)p3[i-1]*3%mod;
+}
+
+int n;
+int v[maxn], empty[maxn], c[maxn];
+vi e[maxn];
+int b[maxn];
+int q[maxn], pos[maxn], d[maxn];
+
+pii dfs(int v, pii minl) {
+    if (v == n-1) return minl;
+    for (int &i = pos[v]; i < (int)e[v].size(); ++i) {
+        int id = e[v][i];
+        if (!empty[id] && d[v]+1 == d[::v[id]]) {
+            pii ret = dfs(::v[id], min(minl, mp(id/2, c[id])));
+            if (ret.fi != -1) {
+                c[id] = sub(c[id], ret.se);
+                c[id^1] = add(c[id^1], ret.se);
+                if (ret.fi == id/2) {
+                    empty[id]--;
+                    empty[id^1]++;
+                }
+                return ret;
+            }
+        }
+    }
+    return mp(-1, 0);
+}
+
+bool bfs() {
+    forn(i, n) d[i] = maxn;
+    d[0] = 0;
+    q[0] = 0;
+    int lq = 0, rq = 1;
+    while (lq != rq) {
+        int v = q[lq++];
+        forn(i, e[v].size()) {
+            int id = e[v][i];
+            int to = ::v[id];
+            if (!empty[id] && d[to] == maxn)
+                d[to] = d[v] + 1, q[rq++] = to;
+        }
+    }
+    forn(i, n) cout << d[i] << " "; cout << endl;
+    return d[n-1] != maxn;
+}
+
+int flow() {
+    int ff = 0;
+    while (bfs()) {
+        forn(i, n) pos[i] = 0;
+        while (1) {
+            pii ret = dfs(0, mp(10000, 0));
+            cout << "ret = " << ret.fi << " " << ret.se << endl;
+            if (ret.fi == -1) break;
+            else ff = add(ff, ret.se);
+        }
+    }
+    return ff;
+}
+
+class CandyCupRunningCompetition {
+public: int findMaximum(int N, vi A, vi B) {
+    buildp3();
+    n = N;
+    forn(i, A.size()) {
+        int a = A[i], b = B[i];
+        v[i*2] = b; empty[i*2] = 0; c[i*2] = p3[i];
+        e[a].pb(i*2);
+        v[i*2+1] = a; empty[i*2+1] = 0; c[i*2+1] = p3[i];
+        e[b].pb(i*2);
+    }
+    return flow();
+}
+};
+
+int main() {
+#ifdef HOME
+    freopen("input.txt", "r", stdin);
+#endif
+
+    CandyCupRunningCompetition a;
+//     cout << a.findMaximum(3,{0,0,1},{1,1,2}) << endl;
+    cout << a.findMaximum(6,
+    {1,1,2,0,4,3,0,1,4},
+    {3,2,3,1,5,5,2,4,3}) << endl;
+
+
+#ifdef HOME
+    cerr << "Time elapsed: " << clock() / 1000 << " ms" << endl;
+#endif
+    return 0;
+}

@@ -1,0 +1,25 @@
+5 4
+0 a
+0 q
+0 q
+0 r
+bbcd
+efqh
+ijqk
+nnnn
+qrst
+
+0 0
+
+2 2
+1 a
+2 b
+ab
+ba
+
+2 2
+1 a
+1 b
+ab
+ba
+

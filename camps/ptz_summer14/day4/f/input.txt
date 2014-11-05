@@ -1,0 +1,44 @@
+4 4
+XXXX
+X..X
+X..X
+XXXX
+6 3
+X..
+XXX
+XXX
+..X
+...
+...
+
+3 4
+XXXX
+XXXX
+..XX
+
+3 3
+...
+X..
+XXX
+3 4
+.X..
+XXX.
+..XX
+4 5
+XX...
+XXXXX
+XXX.X
+XXXXX
+2 5
+XXXX.
+.XXXX
+
+2 6
+XXXXX.
+X...XX
+3 4
+XXXX
+.XXX
+..X.
+
+

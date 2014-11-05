@@ -1,0 +1,24 @@
+2 2
+XX
+X.
+5 5
+.XXXX
+.XXXX
+.XXXX
+.XXXX
+.XXXX
+4 4
+XX..
+XX..
+XXXX
+XXXX
+4  5
+XXXX.
+XXXX.
+.XX..
+.XX..
+4 4
+....
+.XXX
+.XXX
+....
