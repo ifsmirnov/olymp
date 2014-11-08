@@ -53,7 +53,14 @@ struct base {
 };
 
 ostream& operator<<(ostream& out, const base& a) {
-    return out << "(" << a.re << ", " << a.im << ")";
+    auto p = [](ld x) {
+        if (abs(x) < 0.001) {
+            return 0.0;
+        } else {
+            return x;
+        }
+    };
+    return out << "(" << p(a.re) << ", " << p(a.im) << ")";
 }
 
 int n, nb;
@@ -67,16 +74,17 @@ inline int rev(int x) {
     return y;
 }
 
-base angles[1<<22];
-base rangles[1<<22];
+ld angre[1<<22], angim[1<<22];
 
 void gen_angles() {
     ld ang = 2 * M_PI / n;
-    base w(cosl(ang), sinl(ang));
     forn(i, n + 1) {
-        rangles[n-i] = angles[i] = base(cosl(ang * i), sinl(ang * i));
+        angre[i] = cosl(ang * i);
+        angim[i] = sinl(ang * i);
     }
 }
+
+
 
 void fft(base* a, bool rev) {
     forn(i, n) {
@@ -86,7 +94,6 @@ void fft(base* a, bool rev) {
         }
     }
 
-    base *w;
     for (int len = 2; len <= n; len *= 2) {
         for (int i = 0; i < n; i += len) {
             if (len == 2) {
@@ -98,16 +105,15 @@ void fft(base* a, bool rev) {
                 }
                 continue;
             }
-            w = (rev ? rangles : angles);
             base *pu = a+i, *pv = a+i+len/2;
             for (int j = 0; j < len/2; ++j) {
-//                 if (len <= 4 && i == 0) {
-//                     cout << *w << " ";
-//                 }
-                base u = *pu, v = *pv * *w;
-                *pu = u+v;
-                *pv = u-v;
-                w += n / len;
+                base w;
+                w.re = angre[j * (n / len)];
+                w.im = angim[j * (n / len)];
+                if (rev) w.im *= -1;
+                *pv *= w;
+                *pu += *pv;
+                *pv = *pu - *pv * 2;
                 if (rev) {
                     *pu *= 0.5;
                     *pv *= 0.5;
@@ -212,6 +218,23 @@ int main() {
 #ifdef HOME
     freopen("input.txt", "r", stdin);
 #endif
+
+    cout.precision(4);
+
+    n = 16;
+    nb = 4;
+    gen_angles();
+    forn(i, n) {
+        cin >> ba[i].re;
+    }
+
+    fft(ba, 0);
+    forn(i, n) {
+        cout << ba[i] << " ";
+    }
+    cout << endl;
+    return 0;
+
 
     scan();
     cout.precision(2);

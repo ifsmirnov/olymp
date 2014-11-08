@@ -30,31 +30,7 @@ const int inf = 1e9+100500;
 
 typedef double ld;
 
-struct base {
-    ld re, im;
-    base(ld re, ld im) : re(re), im(im) {}
-    base(ld re) : re(re), im(0) {}
-    base() {}
-    ld real() const { return re; }
-    base& operator+= (const base& a) { re += a.re; im += a.im; return *this; }
-    base& operator-= (const base& a) { re -= a.re; im -= a.im; return *this; }
-    base& operator*= (ld a) { re *= a; im *= a; return *this; }
-    base& operator*= (const base& a) {
-        ld nre = re * a.re - im * a.im;
-        ld nim = re * a.im + im * a.re;
-        re = nre;
-        im = nim;
-        return *this;
-    }
-    base operator+(const base& a) const { base t = *this; return t += a; }
-    base operator-(const base& a) const { base t = *this; return t -= a; }
-    base operator*(const base& a) const { base t = *this; return t *= a; }
-    base operator*(ld a) const { base t = *this; return t *= a; }
-};
-
-ostream& operator<<(ostream& out, const base& a) {
-    return out << "(" << a.re << ", " << a.im << ")";
-}
+typedef complex<ld> base;
 
 int n, nb;
 
@@ -89,32 +65,17 @@ void fft(base* a, bool rev) {
     base *w;
     for (int len = 2; len <= n; len *= 2) {
         for (int i = 0; i < n; i += len) {
-            if (len == 2) {
-                a[i] += a[i+1];
-                a[i+1] = a[i] - a[i+1] * 2;
-                if (rev) {
-                    a[i] *= 0.5;
-                    a[i+1] *= 0.5;
-                }
-                continue;
-            }
             w = (rev ? rangles : angles);
-            base *pu = a+i, *pv = a+i+len/2;
             for (int j = 0; j < len/2; ++j) {
-//                 if (len <= 4 && i == 0) {
-//                     cout << *w << " ";
-//                 }
-                base u = *pu, v = *pv * *w;
-                *pu = u+v;
-                *pv = u-v;
+                base u = a[i+j], v = a[i+j+len/2] * (*w);
+                a[i+j] = u+v;
+                a[i+j+len/2] = u-v;
                 w += n / len;
                 if (rev) {
-                    *pu *= 0.5;
-                    *pv *= 0.5;
+                    a[i+j] /= 2;
+                    a[i+j+len/2] /= 2;
                 }
-                ++pu; ++pv;
             }
-//             if (i == 0 && len <= 4) cout << endl;
         }
     }
 //     forn(i, n) cout << a[i] << " ";

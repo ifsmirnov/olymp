@@ -101,12 +101,9 @@ void fft(base* a, bool rev) {
             w = (rev ? rangles : angles);
             base *pu = a+i, *pv = a+i+len/2;
             for (int j = 0; j < len/2; ++j) {
-//                 if (len <= 4 && i == 0) {
-//                     cout << *w << " ";
-//                 }
-                base u = *pu, v = *pv * *w;
-                *pu = u+v;
-                *pv = u-v;
+                *pv *= *w;
+                *pu += *pv;
+                *pv = *pu - *pv * 2;
                 w += n / len;
                 if (rev) {
                     *pu *= 0.5;
