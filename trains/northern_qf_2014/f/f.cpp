@@ -33,16 +33,15 @@ pii a[maxn];
 pii b[maxn];
 int shr[maxn];
 int res[maxn];
-int dl[maxn], dr[maxn];
 int cnt[maxn];
 vi chains[maxn];
 int sel[maxn];
 
 void scan() {
-//     scanf("%d", &n);
+    scanf("%d", &n);
     nr = n;
     forn(i, n) {
-//         scanf("%d", &a[i].fi);
+        scanf("%d", &a[i].fi);
         a[i].se = i;
         shr[i] = a[i].fi;
     }
@@ -141,27 +140,11 @@ int solve() {
 
         if (cnt[t-1] >= 2) {
             go(t);
-//             bool ok = false;
-//             for (auto it : cur) {
-//                 if (sel[t-1] != it.idx) {
-//                     sel[t] = it.idx;
-//                     res[it.getp(t-1)] = 0;
-//                     ok = true;
-//                     break;
-//                 }
-//             }
-// 
-//             if (!ok) {
-// 
-//             }
         }
     }
 
-//     forn(i, 10) cout << sel[i] << " "; cout << endl;
-
-
     int total = count(res, res + nr, 1);
-    return total;
+//     return total;
     printf("%d\n", total);
     int last = -1;
     forn(i, nr) {
@@ -175,8 +158,8 @@ int solve() {
 }
 
 int gen(int t) {
-    int n = 10;
-    int k = 5;
+    int n = rand()%20 + 1;
+    int k = rand()%10 + 1;
     vector<int> a;
     forn(i, n) a.pb(rand()%k);
     sort(all(a));
@@ -215,16 +198,16 @@ int main() {
     freopen("input.txt", "r", stdin);
 #endif
 
-//     scan();
-//     solve();
-// 
-//     return 0;
+    scan();
+    solve();
+
+    return 0;
 
     long long seed;
     asm("rdtsc":"=A"(seed));
     srand(seed);
     cout << "seed = " << seed << endl;
-    int t = gen(rand()%4 + 1);
+    int t = gen(rand()%5 + 1);
     scan();
     int res = solve();
     if (res > t+1) {
